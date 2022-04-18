@@ -1,21 +1,24 @@
 import { Color } from '../models/colors';
 
-export const ColorTool = () => {
+export type ColorToolProps = {
+  colors: Color[];
+  headerText: string;
+};
 
-  const colors: Color[] = [
-    { id: 1, name: 'red', hexcode: 'ff0000' },
-    { id: 2, name: 'green', hexcode: '00ff00' },
-    { id: 3, name: 'blue', hexcode: '0000ff' },
-  ];
 
-  const colorListItems = colors.map(color => <li key={color.id}>
+export const ColorTool = (props: ColorToolProps) => {
+
+  props.colors.push({ id: 4, name: 'purple', hexcode: 'ff00ff' });
+
+
+  const colorListItems = props.colors.map(color => <li key={color.id}>
     {color.name}
   </li>);
 
   return (
     <>
       <header>
-        <h1>Color Tool</h1>
+        <h1>{props.headerText}</h1>
       </header>
       <ul>
         {colorListItems}
