@@ -19,7 +19,8 @@ export const ColorForm = (props: ColorFormProps) => {
 
     setColorForm({
       ...colorForm,
-      [ e.target.name ]: e.target.value,
+      [ e.target.name ]: e.target.type === 'number'
+        ? e.target.valueAsNumber : e.target.value,
     });
 
   };

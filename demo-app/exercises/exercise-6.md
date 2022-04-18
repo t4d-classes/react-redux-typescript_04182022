@@ -2,6 +2,18 @@
 
 1. Create a Car Form component to collect new car data. The id should not be collected on the form.
 
+```javascript
+const change = (e: ChangeEvent<HTMLInputElement>) => {
+
+  setColorForm({
+    ...colorForm,
+    [ e.target.name ]: e.target.type === 'number'
+      ? e.target.valueAsNumber : e.target.value,
+  });
+
+};
+```
+
 2. Utilize the new Car Form component in the Car Tool component to collect new car data and then add it to the car table.
 
 3. Add a new column to Car Table with a header of "Actions".
