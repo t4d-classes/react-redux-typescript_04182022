@@ -1,13 +1,17 @@
 // React 18
 import { createRoot } from 'react-dom/client';
 
-import { HelloWorld } from './components/HelloWorld';
+import { ColorTool } from './components/ColorTool';
+import { CarTool } from './components/CarTool';
 
 const root = createRoot(document.querySelector('#root') as HTMLElement);
 
 root.render(
-  /* React.createElement(HelloWorld) */
-  <HelloWorld />
+  /* React.createElement(ColorTool) */
+  <>
+    <ColorTool />
+    <CarTool />
+  </>
 );
 
 // // React 17
