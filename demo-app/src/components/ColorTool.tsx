@@ -1,5 +1,8 @@
 import { Color } from '../models/colors';
 
+import { ToolHeader } from './ToolHeader';
+import { ColorList } from './ColorList';
+
 export type ColorToolProps = {
   colors: Color[];
   headerText: string;
@@ -8,21 +11,10 @@ export type ColorToolProps = {
 
 export const ColorTool = (props: ColorToolProps) => {
 
-  props.colors.push({ id: 4, name: 'purple', hexcode: 'ff00ff' });
-
-
-  const colorListItems = props.colors.map(color => <li key={color.id}>
-    {color.name}
-  </li>);
-
   return (
     <>
-      <header>
-        <h1>{props.headerText}</h1>
-      </header>
-      <ul>
-        {colorListItems}
-      </ul>
+      <ToolHeader headerText={props.headerText} />
+      <ColorList colors={props.colors} />
     </>
   );
 
