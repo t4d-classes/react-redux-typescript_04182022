@@ -6,6 +6,6 @@
 
 Id, Make, Model, Year, Color, Price
 
-2. Display a static table of cars with each car row displayed with hard coded car data. Do not dynamically build the car rows.
+2. Display a static table of two cars with each car row displayed with hard coded car data. Do not dynamically build the car rows.
 
 3. Ensure it works!
