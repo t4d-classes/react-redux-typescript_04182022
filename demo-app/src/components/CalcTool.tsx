@@ -25,6 +25,11 @@ export const CalcTool = () => {
           <button type="button" onClick={() => subtract(numInput)}>-</button>
         </fieldset>
       </form>
+      <ul>
+        {history.map(entry => <li>
+          
+        </li>)}
+      </ul>
     </>
   );
 
