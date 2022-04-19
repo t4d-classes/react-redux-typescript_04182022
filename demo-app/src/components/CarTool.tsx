@@ -27,7 +27,7 @@ export const CarTool = (props: CarToolProps) => {
 
   const deleteCar = (carId: number) => {
     setCars(cars.filter(c => c.id !== carId));
-  }
+  };
 
   return (
     <>
