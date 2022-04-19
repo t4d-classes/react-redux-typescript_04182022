@@ -1,10 +1,15 @@
 // React 18
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
 
 import { Color } from './models/colors';
 import { Car } from './models/cars';
+
+import { calcToolStore } from './stores/calcToolStore';
+
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
+import { CalcTool } from './components/CalcTool';
 
 // example of a list
 const colorList: Color[] = [
@@ -25,6 +30,9 @@ root.render(
   <>
     <ColorTool colors={colorList} headerText="Color Tool" />
     <CarTool cars={carList} />
+    <Provider store={calcToolStore}>
+      <CalcTool />
+    </Provider>
   </>
 );
 

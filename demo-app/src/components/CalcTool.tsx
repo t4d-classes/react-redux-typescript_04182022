@@ -1,7 +1,11 @@
 import { useState } from 'react';
 
+import { useCalcTool } from '../hooks/useCalcTool';
+
 
 export const CalcTool = () => {
+
+  const { result, add, subtract } = useCalcTool();
 
   const [ numInput, setNumInput ] = useState(0);
 

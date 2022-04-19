@@ -16,7 +16,7 @@ export interface MathAction<T = MathActions> extends Action<T> {
 export function isMathAction(action: any): action is MathAction {
   return ([
     ADD_ACTION, SUBTRACT_ACTION
-  ]).includes(action.type);
+  ]).includes(action?.type);
 }
 
 
