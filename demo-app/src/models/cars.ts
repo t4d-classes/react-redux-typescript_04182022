@@ -8,3 +8,5 @@ export type Car = {
   color: string;
   price: number;
 };
+
+export type NewCar = Omit<Car, 'id'>;

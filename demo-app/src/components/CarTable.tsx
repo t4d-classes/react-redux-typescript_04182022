@@ -4,6 +4,7 @@ import { CarViewRow } from './CarViewRow';
 
 export type CarTableProps = {
   cars: Car[];
+  onDeleteCar: (carId: number) => void;
 }
 
 export const CarTable = (props: CarTableProps) => {
@@ -22,7 +23,7 @@ export const CarTable = (props: CarTableProps) => {
       </thead>
       <tbody>
         {props.cars.map(car =>
-          <CarViewRow key={car.id} car={car} />)}
+          <CarViewRow key={car.id} car={car} onDeleteCar={props.onDeleteCar} />)}
       </tbody>
     </table>    
   );
