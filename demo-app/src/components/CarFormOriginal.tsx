@@ -1,5 +1,5 @@
+import { ChangeEvent, useState } from 'react';
 import { NewCar } from '../models/cars';
-import { useForm } from '../hooks/useForm';
 
 export type CarFormProps = {
   buttonText?: string;
@@ -9,14 +9,26 @@ export type CarFormProps = {
 export const CarForm = (props: CarFormProps) => {
 
   // example of a tuple
-  const [ carForm, change, resetCarForm ] = useForm({
+  const [ carForm, setCarForm ] = useState({
     make: '', model: '', year: 1900, color: '', price: 0,
   });
 
+  const change = (e: ChangeEvent<HTMLInputElement>) => {
+    setCarForm({
+      ...carForm,
+      [ e.target.name ]: e.target.type === 'number'
+        ? e.target.valueAsNumber : e.target.value,
+    });
+
+  };
+
   const submitCar = () => {
     props.onSubmitCar({ ...carForm });
-    resetCarForm();
+    setCarForm({
+      make: '', model: '', year: 1900, color: '', price: 0,
+    });
   };
+
 
   return (
     <form>
