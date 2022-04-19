@@ -10,3 +10,7 @@ export type Car = {
 };
 
 export type NewCar = Omit<Car, 'id'>;
+
+export type CarKeys = keyof Car;
+
+export type NewCarKeys = keyof NewCar;
