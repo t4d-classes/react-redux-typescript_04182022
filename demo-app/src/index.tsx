@@ -6,6 +6,7 @@ import { Car } from './models/cars';
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 
+// example of a list
 const colorList: Color[] = [
   { id: 1, name: 'red', hexcode: 'ff0000' },
   { id: 2, name: 'green', hexcode: '00ff00' },

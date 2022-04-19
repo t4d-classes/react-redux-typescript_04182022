@@ -1,17 +1,21 @@
 import { ChangeEvent, useState } from 'react';
-import { NewCar } from '../models/cars';
 
+import { Car } from '../models/cars';
 
-export type CarFormProps = {
-  buttonText?: string;
-  onSubmitCar: (car: NewCar) => void;
-};
+export type CarEditRowProps = {
+  car: Car;
+  onSaveCar: (car: Car) => void;
+  onCancelCar: () => void;
+}
 
-export const CarForm = (props: CarFormProps) => {
+export const CarEditRow = (props: CarEditRowProps) => {
 
-  // example of a tuple
   const [ carForm, setCarForm ] = useState({
-    make: '', model: '', year: 1900, color: '', price: 0,
+    make: props.car.make,
+    model: props.car.model,
+    year: props.car.year,
+    color: props.car.color,
+    price: props.car.price,
   });
 
   const change = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,53 +24,48 @@ export const CarForm = (props: CarFormProps) => {
       [ e.target.name ]: e.target.type === 'number'
         ? e.target.valueAsNumber : e.target.value,
     });
-
   };
 
-  const submitCar = () => {
-    props.onSubmitCar({ ...carForm });
-    setCarForm({
-      make: '', model: '', year: 1900, color: '', price: 0,
+  const saveCar = () => {
+    props.onSaveCar({
+      ...carForm,
+      id: props.car.id,
     });
-  };
-
+  };  
 
   return (
-    <form>
-      <label>
-        Make:
+    <tr>
+      <td>{props.car.id}</td>
+      <td>
         <input type="text" name="make"
           value={carForm.make} onChange={change} />
-      </label>
-      <label>
-        Model:
+      </td>
+      <td>
         <input type="text" name="model"
           value={carForm.model} onChange={change} />
-      </label>
-      <label>
-        Year:
+      </td>
+      <td>
         <input type="number" name="year"
           value={carForm.year} onChange={change} />
-      </label>
-      <label>
-        Color:
+      </td>
+      <td>
         <input type="text" name="color"
           value={carForm.color} onChange={change} />
-      </label>
-      <label>
-        Price:
+      </td>
+      <td>
         <input type="number" name="price"
           value={carForm.price} onChange={change} />
-      </label>
-      <button type="button" onClick={submitCar}>
-        {props.buttonText}</button>
-    </form>
+      </td>
+      <td>
+        <button type="button"
+          onClick={saveCar}>
+            Save</button>
+        <button type="button"
+          onClick={props.onCancelCar}>
+            Cancel</button>
+      </td>
+    </tr>
   );
 
+
 };
-
-
-CarForm.defaultProps = {
-  buttonText: 'Submit Car',
-};
-
