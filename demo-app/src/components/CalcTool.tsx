@@ -20,6 +20,9 @@ export const CalcTool = () => {
 
   return (
     <>
+      <header>
+        <h2>Calc Tool</h2>
+      </header>
       <div>
         Result: {result}
       </div>

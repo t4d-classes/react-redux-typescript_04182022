@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 
-function App() {
+import { Layout } from './components/Layout';
+import { Home, NoMatch } from './components/common';
+
+import { CalcTool } from './components/CalcTool';
+import { calcToolStore } from './stores/calcToolStore';
+import { ColorTool } from './components/ColorTool';
+import { colorToolStore } from './stores/colorToolStore';
+import { CarTool } from './components/CarTool';
+import { carToolStore } from './stores/carToolStore';
+
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/calc-tool" element={
+          <Provider store={calcToolStore}>
+            <CalcTool />
+          </Provider>
+        } />
+        <Route path="/color-tool" element={
+          <Provider store={colorToolStore}>
+            <ColorTool />
+          </Provider>            
+        } />
+        <Route path="/car-tool" element={
+          <Provider store={carToolStore}>
+            <CarTool />
+          </Provider>
+        } />
+        <Route path="*" element={<NoMatch />}></Route>
+      </Route>
+    </Routes>
   );
 }
-
-export default App;

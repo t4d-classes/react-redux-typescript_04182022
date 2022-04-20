@@ -1,19 +1,17 @@
 import { useColorTool } from '../hooks/useColorTool';
-import { ToolHeader } from './ToolHeader';
+
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
 
-export type ColorToolProps = {
-  headerText: string;
-};
-
-export const ColorTool = (props: ColorToolProps) => {
+export const ColorTool = () => {
 
   const { colors, addColor } = useColorTool();
 
   return (
     <>
-      <ToolHeader headerText={props.headerText} />
+      <header>
+        <h2>Color Tool</h2>
+      </header>
       <ColorList colors={colors} />
       <ColorForm buttonText="Add Color" onSubmitColor={addColor} />
     </>

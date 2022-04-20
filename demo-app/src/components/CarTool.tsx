@@ -1,6 +1,5 @@
 import { useCarTool } from '../hooks/useCarTool';
 
-import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
@@ -14,7 +13,9 @@ export const CarTool = () => {
 
   return (
     <>
-      <ToolHeader headerText="Car Tool" />
+      <header>
+        <h2>Car Tool</h2>
+      </header>
       <CarTable cars={cars} editCarId={editCarId}
         onEditCar={editCar} onDeleteCar={deleteCar}
         onSaveCar={saveCar} onCancelCar={cancelCar} />
