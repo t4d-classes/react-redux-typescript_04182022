@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Car } from '../models/cars';
 
 export type CarViewRowProps = {
@@ -6,7 +7,7 @@ export type CarViewRowProps = {
   onDeleteCar: (carId: number) => void;
 }
 
-export const CarViewRow = (props: CarViewRowProps) => {
+export const CarViewRow = memo((props: CarViewRowProps) => {
 
   return (
     <tr>
@@ -27,5 +28,4 @@ export const CarViewRow = (props: CarViewRowProps) => {
     </tr>
   );
 
-
-};
+});

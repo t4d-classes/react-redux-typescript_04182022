@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { Item, ItemId } from '../models/items';
 
@@ -17,7 +17,7 @@ export const useList: UseList = <T extends Item>(initialItems: T[]) => {
 
   const [ items, setItems ] = useState([ ...initialItems ]);
 
-  const appendItem: AppendItem<T> = (item) => {
+  const appendItem: AppendItem<T> = useCallback((item) => {
     setItems([
       ...items,
       {
@@ -25,18 +25,18 @@ export const useList: UseList = <T extends Item>(initialItems: T[]) => {
         id: Math.max(...items.map(c => c.id), 0) + 1,
       } as T,
     ]);
-  };
+  }, [items]);
 
-  const replaceItem: ReplaceItem<T> = (item) => {
+  const replaceItem: ReplaceItem<T> = useCallback((item) => {
     const itemIndex = items.findIndex(c => c.id === item.id);
     const newItems = [...items];
     newItems[itemIndex] = item;
     setItems(newItems);
-  }; 
+  }, [items]); 
 
-  const removeItem: RemoveItem = (itemId) => {
+  const removeItem: RemoveItem = useCallback((itemId) => {
     setItems(items.filter(c => c.id !== itemId));
-  };
+  }, [items]);
 
   return [ items, appendItem, replaceItem, removeItem ];  
 }

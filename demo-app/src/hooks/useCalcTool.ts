@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { bindActionCreators } from "redux";
 import { useSelector, useDispatch } from "react-redux";
 import { CalcToolState, HistoryEntry } from "../models/calcToolState";
@@ -15,14 +16,14 @@ export const useCalcTool = () => {
 
   const dispatch = useDispatch();
 
-  const boundActions = bindActionCreators({
+  const boundActions = useMemo(() => bindActionCreators({
     add: createAddAction,
     subtract: createSubtractAction,
     multiply: createMultiplyAction,
     divide: createDivideAction,
     clear: createClearAction,
     deleteHistoryEntry: createDeleteHistoryEntryAction
-  }, dispatch);
+  }, dispatch), [dispatch]);
 
   return {
     ...boundActions,

@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { NewCar } from '../models/cars';
 import { useForm } from '../hooks/useForm';
 
@@ -6,7 +8,7 @@ export type CarFormProps = {
   onSubmitCar: (car: NewCar) => void;
 };
 
-export const CarForm = (props: CarFormProps) => {
+export const _CarForm = (props: CarFormProps) => {
 
   // example of a tuple
   const [ carForm, change, resetCarForm ] = useForm({
@@ -53,7 +55,9 @@ export const CarForm = (props: CarFormProps) => {
 };
 
 
-CarForm.defaultProps = {
+_CarForm.defaultProps = {
   buttonText: 'Submit Car',
 };
+
+export const CarForm = memo(_CarForm);
 

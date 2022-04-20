@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import { Car, NewCar } from '../models/cars';
 import { useList } from '../hooks/useList';
@@ -16,27 +16,26 @@ export const CarTool = (props: CarToolProps) => {
 
   const [ editCarId, setEditCarId ] = useState(-1);
 
-  const cancelEditMode = () => setEditCarId(-1);
+  const cancelEditMode = useCallback(() => setEditCarId(-1), []);
 
-  const addCar = (car: NewCar) => {
+  const addCar = useCallback((car: NewCar) => {
     appendCar(car);
     cancelEditMode();
-  };
+  }, [appendCar, cancelEditMode]);
 
-  const saveCar = (car: Car) => {
+  const saveCar = useCallback((car: Car) => {
     replaceCar(car);
     cancelEditMode();
-  };
+  }, [replaceCar, cancelEditMode]);
 
-  const deleteCar = (carId: number) => {
+  const deleteCar = useCallback((carId: number) => {
     removeCar(carId);
     cancelEditMode();
-  };
+  }, [removeCar, cancelEditMode]);
 
-  const editCar = (carId: number) => setEditCarId(carId);
+  const editCar = useCallback((carId: number) => setEditCarId(carId), []);
 
-  const cancelCar = () => cancelEditMode();
-  ;
+  const cancelCar = useCallback(() => cancelEditMode(), [cancelEditMode]);
 
   return (
     <>
