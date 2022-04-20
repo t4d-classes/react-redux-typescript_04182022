@@ -1,18 +1,15 @@
-import { Color } from '../models/colors';
-import { useList } from '../hooks/useList';
+import { useColorTool } from '../hooks/useColorTool';
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
 import { ColorForm } from './ColorForm';
 
 export type ColorToolProps = {
-  colors: Color[];
   headerText: string;
 };
 
-
 export const ColorTool = (props: ColorToolProps) => {
 
-  const [ colors, addColor ] = useList([...props.colors]);
+  const { colors, addColor } = useColorTool();
 
   return (
     <>

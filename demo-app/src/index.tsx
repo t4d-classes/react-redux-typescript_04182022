@@ -6,17 +6,11 @@ import { Color } from './models/colors';
 import { Car } from './models/cars';
 
 import { calcToolStore } from './stores/calcToolStore';
+import { colorToolStore } from './stores/colorToolStore';
 
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 import { CalcTool } from './components/CalcTool';
-
-// example of a list
-const colorList: Color[] = [
-  { id: 1, name: 'red', hexcode: 'ff0000' },
-  { id: 2, name: 'green', hexcode: '00ff00' },
-  { id: 3, name: 'blue', hexcode: '0000ff' },
-];
 
 const carList: Car[] = [
   { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2018, color: 'blue', price: 45000 },
@@ -26,23 +20,13 @@ const carList: Car[] = [
 const root = createRoot(document.querySelector('#root') as HTMLElement);
 
 root.render(
-  /* React.createElement(ColorTool, { colors: colorList }) */
   <>
-    <ColorTool colors={colorList} headerText="Color Tool" />
+    <Provider store={colorToolStore}>
+      <ColorTool headerText="Color Tool" />
+    </Provider>
     <CarTool cars={carList} />
     <Provider store={calcToolStore}>
       <CalcTool />
     </Provider>
   </>
 );
-
-// // React 17
-// import { render } from 'react-dom';
-
-// import { HelloWorld } from './components/HelloWorld';
-
-// render(
-//   /* React.createElement(HelloWorld) */
-//   <HelloWorld />,
-//   document.querySelector('#root'),
-// );
