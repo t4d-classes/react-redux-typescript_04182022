@@ -5,6 +5,7 @@ export type HistoryEntry = {
 }
 
 export type CalcToolState = {
-  result: number;
   history: HistoryEntry[]
 };
+
+

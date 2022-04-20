@@ -5,14 +5,13 @@ import {
   createAddAction, createClearAction, createDeleteHistoryEntryAction,
   createDivideAction, createMultiplyAction, createSubtractAction,
 } from "../actions/calcToolActions";
+import { resultSelector, historySelector } from "../selectors/calcToolSelectors";
 
 export const useCalcTool = () => {
 
-  const result = useSelector<CalcToolState, number>(
-    state => state.result);
+  const result = useSelector<CalcToolState, number>(resultSelector);
 
-  const history = useSelector<CalcToolState, HistoryEntry[]>(
-    state => state.history);
+  const history = useSelector<CalcToolState, HistoryEntry[]>(historySelector);
 
   const dispatch = useDispatch();
 

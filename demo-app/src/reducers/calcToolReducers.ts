@@ -1,36 +1,58 @@
 import { Reducer, AnyAction, combineReducers } from 'redux';
 
-import { isAddAction, isClearAction, isDeleteHistoryEntryAction, isDivideAction, isMathAction, isMultiplyAction, isSubtractAction } from '../actions/calcToolActions';
+import { 
+  // isAddAction, isDivideAction, isMultiplyAction, isSubtractAction
+  isClearAction, isDeleteHistoryEntryAction, isMathAction
+} from '../actions/calcToolActions';
 import { CalcToolState, HistoryEntry } from '../models/calcToolState';
 
+// type ROAnyAction = Readonly<AnyAction>;
 
-export const resultReducer: Reducer<number, AnyAction> = (result = 0, action) => {
+// Reducer - Pure Functions
 
-  if (isAddAction(action)) {
-    return result + action.payload.num;
-  }
+// Four Qualities of a Pure Function
+// 1. The only data input comes through parameters
+// 2. The parameters can never be mutated
+// 3. No side-effects (no ajax calls from the reducer)
+// 4. The only output of a pure function is the return value
 
-  if (isSubtractAction(action)) {
-    return result - action.payload.num;
-  }
+// export const resultReducer: Reducer<number, ROAnyAction> = (result: number = 0, action) => {
 
-  if (isMultiplyAction(action)) {
-    return result * action.payload.num;
-  }
+//   // no side-effects allowed
+//   // console.log('test');
 
-  if (isDivideAction(action)) {
-    return result / action.payload.num;
-  }
+//   // not allowed to mutate the parameter (stack)
+//   // action = null;
 
-  if (isClearAction(action)) {
-    return 0;
-  }
+//   // not allowed to mutate the object (heap)
+//   // action.type = 'test';
 
-  return result;
+//   if (isAddAction(action)) {
+//     return result + action.payload.num;
+//   }
 
-};
+//   if (isSubtractAction(action)) {
+//     return result - action.payload.num;
+//   }
+
+//   if (isMultiplyAction(action)) {
+//     return result * action.payload.num;
+//   }
+
+//   if (isDivideAction(action)) {
+//     return result / action.payload.num;
+//   }
+
+//   if (isClearAction(action)) {
+//     return 0;
+//   }
+
+//   return result;
+
+// };
 
 export const historyReducer: Reducer<HistoryEntry[], AnyAction> = (history = [], action) => {
+
   if (isMathAction(action)) {
     return [
       ...history,
@@ -55,6 +77,5 @@ export const historyReducer: Reducer<HistoryEntry[], AnyAction> = (history = [],
 
 
 export const calcToolReducer: Reducer<CalcToolState, AnyAction> = combineReducers({
-  result: resultReducer,
   history: historyReducer,
 });
