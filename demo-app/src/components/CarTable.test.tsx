@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { Car } from '../models/cars';
 import { CarTable } from './CarTable';
@@ -31,7 +31,7 @@ describe('CarTable render', () => {
   });
 
   test('render', () => {
-    const { debug } = render(
+    render(
       <CarTable
         cars={cars}
         editCarId={-1}
@@ -42,6 +42,6 @@ describe('CarTable render', () => {
       />,
     );
 
-    //debug();
+    //screen.debug();
   });
 });
