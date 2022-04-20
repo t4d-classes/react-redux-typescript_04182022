@@ -1,6 +1,6 @@
 import { Reducer, AnyAction, combineReducers } from 'redux';
 
-import { isRefreshCarsRequestAction, isRefreshCarsDoneAction } from '../actions/carToolActions';
+import { isRefreshCarsDoneAction, isEditCarAction, isCancelCarAction } from '../actions/carToolActions';
 import { Car } from '../models/cars';
 import { CarToolState } from '../models/carToolState';
 
@@ -14,6 +14,14 @@ export const carsReducer: Reducer<Car[], AnyAction> = (cars = [], action) => {
 }
 
 export const editCarIdReducer: Reducer<number, AnyAction> = (editCarId = -1, action) => {
+
+  if (isEditCarAction(action)) {
+    return action.payload.carId;
+  }
+
+  if (isRefreshCarsDoneAction(action) || isCancelCarAction(action)) {
+    return -1;
+  }
 
   return editCarId;
 }

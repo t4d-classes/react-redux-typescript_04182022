@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { CarToolState } from "../models/carToolState";
 import { Car } from "../models/cars";
-import { refreshCars } from "../actions/carToolActions";
+import {
+  refreshCars, appendCar, replaceCar, removeCar,
+  createEditCarAction, createCancelCarAction,
+} from "../actions/carToolActions";
 
 export const useCarTool = () => {
 
@@ -17,6 +20,11 @@ export const useCarTool = () => {
     // refreshCars: refreshCars,
     // short-hand property
     refreshCars,
+    addCar: appendCar,
+    saveCar: replaceCar,
+    deleteCar: removeCar,
+    editCar: createEditCarAction,
+    cancelCar: createCancelCarAction,
   }, dispatch), [dispatch]);
 
   useEffect(() => {
